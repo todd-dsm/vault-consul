@@ -1,7 +1,7 @@
 {
-  "CN": "server.dc1.cluster.local",
+  "CN": "node.la.cluster.local",
   "hosts": [
-    "server.dc1.cluster.local",
+    "node.la.cluster.local",
     "127.0.0.1"
   ],
   "key": {

@@ -14,27 +14,23 @@ prep:  ## Prepare Kube cluster w/ Helm
 	@printf '\n%s\n\n' "  source scripts/build.env vaultRelName"
 
 
-operators: ## deploy the operators
-	scripts/inst_operators.sh
+#operators: ## deploy the operators
+#	scripts/inst_operators.sh
 
+#certs:  ## generate cert files; 1-time setup
+#	scripts/create-certs.sh
 
-certs:  ## generate cert files; 1-time setup
-	scripts/create-certs.sh
-
+consul: ## install Consul
+	scripts/inst-consul.sh
 
 vault:  ## install Vault via Helm 
-	scripts/inst_vault.sh 
-	kubectl --namespace=vault get vault -o yaml
-	#kubectl --namespace=vault get vault $(vaultRelName) -o yaml
-
+	scripts/inst-vault.sh 
 
 proxy:  ## proxy out to the cluster for the unseal
-	scripts/proxy_out.sh
-
+	scripts/proxy-out.sh
 
 unseal: ## Unseal Vault
-	scripts/open_vault.sh
-
+	scripts/open-vault.sh
 
 policy: ## Configure Vault - update this per-use
 	vault audit enable file file_path=stdout
